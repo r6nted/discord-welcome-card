@@ -38,12 +38,24 @@
       <h4 id="text">Welcome NAME</h4>
     </div>
     <script>
-      var path = location.href; 
-      var page = a.substring(a.indexOf("?")+1);
-      document.getElementById("text").textContent = page;
+      function getUrlQueryParams() {
+        var queryParams = {},
+          param;
+        //http://example.com/?id=123456&name=amy
+        //window.location.search="?id=123456&name=amy"
+        var params = window.location.search.substring(1).split("&");
+        for (var i = 0; i < params.length; i++) {
+          param = params[i].split("=");
+          queryParams[param[0]] = param[1];
+        }
+        return params;
+      }
+
+      var queryParams = getUrlQueryParams();
+      document.getElementById("text").textContent = queryParams;
 
       var imgReplace = document.getElementsByClassName("personIMG")[0];
-      imgReplace.src = `https://avatars.dicebear.com/4.5/api/avataaars/${page}.svg`;
+      imgReplace.src = `https://avatars.dicebear.com/4.5/api/avataaars/${queryParams}.svg`;
       imgReplace.style.visibility = "visible";
     </script>
   </body>

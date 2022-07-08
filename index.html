@@ -38,8 +38,8 @@
       <h4 id="text">Welcome NAME</h4>
     </div>
     <script>
-      var path = window.location.pathname;
-      var page = path.split("/").pop();
+      var path = location.href; 
+      var page = a.substring(a.indexOf("?")+1);
       document.getElementById("text").textContent = page;
 
       var imgReplace = document.getElementsByClassName("personIMG")[0];
